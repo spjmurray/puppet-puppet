@@ -1,6 +1,6 @@
 # Derive the ssl directory from the global configuration hash
 module Puppet::Parser::Functions
-  newfunction(:puppet_ssldir, :type = :rvalue) do |args|
+  newfunction(:puppet_ssldir, :type => :rvalue) do |args|
     config = lookupvar('puppet::config::values')
     setting = config.select { |x| x == 'main/ssldir' }
     if setting.empty?

@@ -40,7 +40,7 @@ class puppet::master::passenger {
     ssl_key           => "${ssldir}/private_keys/${::fqdn}.pem",
     ssl_chain         => "${ssldir}/certs/ca.pem",
     ssl_ca            => "${ssldir}/certs/ca.pem",
-    ssl_crl_check     => true,
+    ssl_crl_check     => 'chain',
     ssl_crl           => "${ssldir}/crl.pem",
     ssl_verify_client => 'optional',
     ssl_verify_depth  => '1',

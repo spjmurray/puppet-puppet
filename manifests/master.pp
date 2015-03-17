@@ -6,6 +6,8 @@ class puppet::master {
 
   assert_private()
 
+  include ::puppet
+
   $ssldir = puppet_ssldir()
 
   package { 'puppetmaster-common':

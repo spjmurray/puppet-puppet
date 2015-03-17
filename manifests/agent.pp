@@ -15,6 +15,8 @@ class puppet::agent (
   $provider = 'apt',
 ) {
 
+  include ::puppet
+
   package { 'puppet-common':
     ensure   => $ensure,
     provider => $provider,

@@ -41,7 +41,7 @@ puppet::config::values:
   main/rundir:
     value: '/var/run/puppet'
   main/ssldir:
-    value: /var/lib/puppet/ssl'
+    value: '/var/lib/puppet/ssl'
 ```
 
 ##Dependencies

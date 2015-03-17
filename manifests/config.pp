@@ -1,5 +1,15 @@
 # == Class: puppet::config
 #
+# Create the puppet configuration file.  Uses a hiera hash
+# lookup so you can have common components and role/host
+# specific configuration in separate hiera files
+#
+# === Parameters
+#
+# [*values*]
+#   Hash of section/setting keys and associated values
+#   passed to the puppet_config type
+#
 class puppet::config {
 
   assert_private()

@@ -1,8 +1,12 @@
 # == Class: puppet::master
 #
+# Installs the base puppet master packages
+#
 class puppet::master {
 
   assert_private()
+
+  $ssldir = puppet_ssldir()
 
   package { 'puppetmaster-common':
     ensure => installed,
@@ -10,7 +14,7 @@ class puppet::master {
 
   exec { 'create ca':
     command => "puppet cert generate ${::fqdn}",
-    creates => "/var/lib/puppet/ssl/certs/${::fqdn}.pem",
+    creates => "${ssldir}/certs/${::fqdn}.pem",
   }
 
 }

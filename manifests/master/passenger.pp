@@ -1,10 +1,15 @@
 # == Class: puppet::master::passenger
 #
+# Deploy a standalone puppet master with an apache ssl passenger
+# frontend
+#
 class puppet::master::passenger {
 
   include ::apache
   include ::apache::mod::passenger
   include ::puppet::master
+
+  $ssldir = puppet_ssldir()
 
   file { [
     '/etc/puppet/rack',
@@ -31,11 +36,12 @@ class puppet::master::passenger {
     ssl               => true,
     ssl_protocol      => '-ALL +SSLv3 +TLSv1',
     ssl_cipher        => 'ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP',
-    ssl_cert          => "/var/lib/puppet/ssl/certs/${::fqdn}.pem",
-    ssl_key           => "/var/lib/puppet/ssl/private_keys/${::fqdn}.pem",
-    ssl_chain         => "/var/lib/puppet/ssl/certs/ca.pem",
-    ssl_ca            => "/var/lib/puppet/ssl/certs/ca.pem",
-    ssl_crl           => "/var/lib/puppet/ssl/ca/ca_crl.pem",
+    ssl_cert          => "${ssldir}/certs/${::fqdn}.pem",
+    ssl_key           => "${ssldir}/private_keys/${::fqdn}.pem",
+    ssl_chain         => "${ssldir}/certs/ca.pem",
+    ssl_ca            => "${ssldir}/certs/ca.pem",
+    ssl_crl_check     => true,
+    ssl_crl           => "${ssldir}/crl.pem",
     ssl_verify_client => 'optional',
     ssl_verify_depth  => '1',
     ssl_options       => '+StdEnvVars +ExportCertData',

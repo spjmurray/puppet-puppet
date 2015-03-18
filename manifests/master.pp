@@ -19,4 +19,6 @@ class puppet::master {
     creates => "${ssldir}/certs/${::fqdn}.pem",
   }
 
+  Class['::puppet'] -> Class['::puppet::master']
+
 }

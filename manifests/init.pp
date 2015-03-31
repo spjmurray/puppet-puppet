@@ -9,5 +9,6 @@ class puppet {
 
   contain ::puppet::repo
   contain ::puppet::config
+  contain ::puppet::hiera
 
 }

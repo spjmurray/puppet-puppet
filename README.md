@@ -19,7 +19,8 @@ tasks, configuration is up to the user.  Configuration is performed entriely in
 hiera to cleanly separate code from data.  Puppet defaults are typically
 sufficient to create a working setup.  The puppet::config class calls
 hiera_hash under the covers so it is possible to define configuration in
-common, role or node specific configuration files
+common, role or node specific configuration files.  Please refer to individual
+submodule documentation for additional configuration reference.
 
 ##Usage
 
@@ -34,6 +35,13 @@ include ::puppet::master::passenger
 puppet::repo::manage: true
 puppet::repo::release: 'trusty'
 
+# hiera.yaml
+puppet::hiera::hierarchy:
+  - '"nodes/%%{}{::hostname}"'
+  - '"modules/%%{}{calling_module}"'
+  - 'common'
+puppet::hiera::datadir: '"/etc/puppet/environments/%%{}{::environment}/hiera"'
+
 # puppet.conf
 puppet::config::values:
   main/logdir:
@@ -42,11 +50,14 @@ puppet::config::values:
     value: '/var/run/puppet'
   main/ssldir:
     value: '/var/lib/puppet/ssl'
+  master/environmentpath:
+    value: '$confdir/environments'
 ```
 
 ##Dependencies
 
 - http://github.com/puppetlabs/puppetlabs-apache
+- http://github.com/puppetlabs/puppetlabs-apt
 - http://github.com/puppetlabs/puppetlabs-inifile
 - http://github.com/puppetlabs/puppetlabs-stdlib
 

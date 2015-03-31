@@ -1,0 +1,9 @@
+---
+:backends:
+  - yaml
+:hierarchy:
+<% @hierarchy.each do |item| -%>
+  - <%= item %>
+<% end -%>
+:yaml:
+  :datadir: <%= @datadir %>

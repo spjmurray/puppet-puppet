@@ -22,6 +22,7 @@ class puppet::config {
   }
 
   # Todo: Data bindings don't support hash merging yet
+  # Note: Puppet 4 data providers should be the solution
   $values = hiera_hash('puppet::config::values')
 
   create_resources('puppet_config', $values)

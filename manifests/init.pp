@@ -5,7 +5,7 @@
 #
 class puppet {
 
-  assert_private()
+  private()
 
   contain ::puppet::repo
   contain ::puppet::config

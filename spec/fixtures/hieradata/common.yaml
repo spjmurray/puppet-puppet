@@ -1,0 +1,19 @@
+---
+puppet::repo::manage: true
+puppet::repo::release: 'trusty'
+
+puppet::hiera::datadir: '"/etc/puppet/environments/%%{}{::environment}/hieradata"'
+puppet::hiera::hierarchy:
+  - 'common'
+
+puppet::config::values:
+  main/logdir:
+    value: '/var/log/puppet'
+  main/vardir:
+    value: '/var/lib/puppet'
+  main/ssldir:
+    value: '/var/lib/puppet/ssl'
+  main/rundir:
+    value: '/var/run/puppet'
+  master/environmentpath:
+    value: '$confdir/environments'

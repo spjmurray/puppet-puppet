@@ -38,7 +38,7 @@ class puppet::repo (
   $key_source = 'https://apt.puppetlabs.com/keyring.gpg',
 ) {
 
-  assert_private()
+  private()
 
   if $manage {
 

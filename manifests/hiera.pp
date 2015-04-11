@@ -19,6 +19,8 @@ class puppet::hiera (
   $datadir   = '/var/lib/hiera',
 ) {
 
+  private()
+
   file { '/etc/puppet/hiera.yaml':
     ensure  => file,
     owner   => 'root',

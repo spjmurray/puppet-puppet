@@ -11,14 +11,18 @@ class puppet::master {
   $ssldir = puppet_ssldir()
 
   package { 'puppetmaster-common':
-    ensure => installed,
+    ensure   => $puppet::version,
+    provider => $puppet::provider,
   } ->
 
+  # TODO: This step should be conditional
   exec { 'create ca':
     command => "puppet cert generate ${::fqdn}",
     creates => "${ssldir}/certs/${::fqdn}.pem",
   }
 
+  # By depending on the base puppet class you are guaranteed that the repos
+  # have been configured
   Class['::puppet'] -> Class['::puppet::master']
 
 }

@@ -1,9 +1,2 @@
----
-:backends:
-  - yaml
-:hierarchy:
-<% @hierarchy.each do |item| -%>
-  - <%= item %>
-<% end -%>
-:yaml:
-  :datadir: <%= @datadir %>
+<% require 'yaml' -%>
+<%= YAML.dump(scope['::puppet::hiera']) %>

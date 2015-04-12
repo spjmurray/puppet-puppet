@@ -29,8 +29,5 @@ RSpec.configure do |c|
     # Install master only deps
     on master, puppet('module', 'install', 'puppetlabs-apache'), { :acceptable_exit_codes => [0,1] }
     on master, puppet('module', 'install', 'puppetlabs-concat'), { :acceptable_exit_codes => [0,1] }
-    # Install hieradata
-    scp_to(hosts, "#{module_root}/spec/fixtures/hiera.yaml", '/tmp/')
-    scp_to(hosts, "#{module_root}/spec/fixtures/hieradata/", '/tmp/', )
   end
 end

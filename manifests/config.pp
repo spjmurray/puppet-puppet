@@ -1,14 +1,6 @@
 # == Class: puppet::config
 #
-# Create the puppet configuration file.  Uses a hiera hash
-# lookup so you can have common components and role/host
-# specific configuration in separate hiera files
-#
-# === Parameters
-#
-# [*values*]
-#   Hash of section/setting keys and associated values
-#   passed to the puppet_config type
+# Create the puppet configuration file.
 #
 class puppet::config {
 
@@ -21,16 +13,12 @@ class puppet::config {
     mode   => '0755',
   }
 
-  # Todo: Data bindings don't support hash merging yet
-  # Note: Puppet 4 data providers should be the solution
-  $values = hiera_hash('puppet::config::values')
-
-  create_resources('puppet_config', $values)
-
-  resources { 'puppet_config':
-    purge => true,
+  file { '/etc/puppet/puppet.conf':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('puppet/puppet.conf.erb'),
   }
-
-  File['/etc/puppet'] -> Puppet_config <||>
 
 }

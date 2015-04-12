@@ -1,9 +1,9 @@
-# == Class: puppet::master::passenger
+# == Class: puppet::master::apache
 #
 # Deploy a standalone puppet master with an apache ssl passenger
 # frontend
 #
-class puppet::master::passenger {
+class puppet::master::apache {
 
   include ::apache
   include ::apache::mod::passenger
@@ -60,10 +60,10 @@ class puppet::master::passenger {
   }
 
   # Ensure the master and certificates are installed before starting the server
-  Class['::puppet::master'] -> Class['::puppet::master::passenger']
+  Class['::puppet::master'] -> Class['::puppet::master::apache']
+
   # Notify apache to restart if the main or hiera configuration changes.
   # These files are read on restart only
-  Class['::puppet::config'] ~> Class['::apache']
-  Class['::puppet::hiera'] ~> Class['::apache']
+  Class['::puppet'] ~> Class['::apache::service']
 
 }

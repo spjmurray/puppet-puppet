@@ -13,7 +13,7 @@ class puppet::agent::cron (
   $runiterval = 30,
 ) {
 
-  include ::puppet::agent
+  include ::puppet
 
   cron { 'puppet-agent':
     command => 'puppet agent --onetime --no-daemonize',
@@ -21,6 +21,6 @@ class puppet::agent::cron (
     minute  => interval_to_minute($runiterval),
   }
 
-  Class['puppet::agent'] -> Class['puppet::agent::cron']
+  Class['puppet'] -> Class['puppet::agent::cron']
 
 }

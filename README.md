@@ -6,7 +6,7 @@
 2. [Module Description](#module-description)
 3. [Usage](#usage)
 4. [Dependencies](#dependencies)
-5. [Limitations](#limitations)
+5. [Contribution](#contribution)
 
 ##Overview
 
@@ -17,41 +17,36 @@ Deploys and configures Puppet
 Lightweight puppet deployment.  Performs only the most rudimentary installation
 tasks, configuration is up to the user.  Configuration is performed entriely in
 hiera to cleanly separate code from data.  Puppet defaults are typically
-sufficient to create a working setup.  The puppet::config class calls
-hiera_hash under the covers so it is possible to define configuration in
-common, role or node specific configuration files.  Please refer to individual
-submodule documentation for additional configuration reference.
+sufficient to create a working setup.
 
 ##Usage
 
 ```puppet
-include ::puppet::agent
-include ::puppet::master::passenger
+include ::puppet::agent::cron
+include ::puppet::master::apache
 ```
 
 ```yaml
 ---
-# Install options
-puppet::repo::manage: true
-puppet::repo::release: 'trusty'
+puppet::repo_manage: true
 
-# hiera.yaml
-puppet::hiera::hierarchy:
-  - '"nodes/%%{}{::hostname}"'
-  - '"modules/%%{}{calling_module}"'
-  - 'common'
-puppet::hiera::datadir: '"/etc/puppet/environments/%%{}{::environment}/hiera"'
+puppet::hiera:
+  :backends:
+    - 'yaml'
+  :yaml:
+    :datadir: '"/etc/puppet/environments/%%{}{::environment}/hiera"'
+  :hierarchy:
+    - '"nodes/%%{}{::hostname}"'
+    - '"modules/%%{}{calling_module}"'
+    - 'common'
 
-# puppet.conf
-puppet::config::values:
-  main/logdir:
-    value: '/var/lib/puppet'
-  main/rundir:
-    value: '/var/run/puppet'
-  main/ssldir:
-    value: '/var/lib/puppet/ssl'
-  master/environmentpath:
-    value: '$confdir/environments'
+puppet::conf:
+  main:
+    logdir: '/var/lib/puppet'
+    rundir: '/var/run/puppet'
+    ssldir: '/var/lib/puppet/ssl'
+  master:
+    environmentpath: '$confdir/environments'
 ```
 
 ##Dependencies
@@ -61,5 +56,18 @@ puppet::config::values:
 - http://github.com/puppetlabs/puppetlabs-inifile
 - http://github.com/puppetlabs/puppetlabs-stdlib
 
-##Limitations
+##Contribution
+
+I'm keen to keep this module lightweight and maintainable.  As such, much is hard
+coded to Ubuntu, however most pertinent options can be controlled via parameters.
+Likewise there are no configuration related hacks, all configuration is passed in
+pretty much verbatim via parameters, so should never be changed.
+
+That said if extensions are required ensure the changes are unit tested before
+submission.  Please at least run:
+
+```
+rake validate
+rake beaker
+```
 

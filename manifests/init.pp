@@ -8,6 +8,9 @@
 # [*version*]
 #   Version of the packages to install
 #
+# [*package*]
+#   Package to install e.g. puppet-common in apt is puppet in gem
+#
 # [*provider*]
 #   Where to source the packages from
 #
@@ -46,8 +49,9 @@
 #   to use the trusty release to get upstream packages
 #
 class puppet (
-  # Version controll
+  # Version control
   $version = 'installed',
+  $package = 'puppet-common',
   $provider = 'apt',
   # Configuration management
   $conf = {

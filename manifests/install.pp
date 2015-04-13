@@ -4,7 +4,7 @@
 #
 class puppet::install {
 
-  package { 'puppet-common':
+  package { $puppet::package:
     ensure   => $puppet::version,
     provider => $puppet::provider,
   }

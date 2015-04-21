@@ -21,6 +21,13 @@ class puppet::master {
     creates => "${ssldir}/certs/${::fqdn}.pem",
   }
 
+  file { '/etc/puppet/autosign.conf':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    content => template('puppet/autosign.conf.erb'),
+  }
+
   # By depending on the base puppet class you are guaranteed that the repos
   # have been configured
   Class['::puppet'] -> Class['::puppet::master']

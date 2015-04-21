@@ -23,6 +23,9 @@
 # [*hiera*]
 #   Hiera configuration file contents
 #
+# [*autosign*]
+#   Array of autosign.conf entries
+#
 # [*repo_manage*]
 #   Whether to enable module control of the puppet apt repository
 #
@@ -81,6 +84,8 @@ class puppet (
       'common',
     ],
   },
+  # Autosign management
+  $autosign = [],
   # Repository management
   $repo_manage = false,
   $repo_location = 'http://apt.puppetlabs.com',

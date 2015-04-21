@@ -14,6 +14,9 @@
 # [*provider*]
 #   Where to source the packages from
 #
+# [*dependencies*]
+#   Additional package dependencies
+#
 # [*conf*]
 #   Puppet configuration file contents
 #
@@ -53,6 +56,10 @@ class puppet (
   $version = 'installed',
   $package = 'puppet-common',
   $provider = 'apt',
+  # Installation control
+  $dependencies = [
+    'ruby-shadow',
+  ],
   # Configuration management
   $conf = {
     'main' => {

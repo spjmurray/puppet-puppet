@@ -74,13 +74,13 @@ class puppet (
   },
   # Hiera management
   $hiera = {
-    ':backends' => [
+    'backends' => [
       'yaml',
     ],
-    ':yaml' => {
-      ':datadir' => '/var/lib/hiera',
+    'yaml' => {
+      'datadir' => '/var/lib/hiera',
     },
-    ':hierarchy' => [
+    'hierarchy' => [
       'common',
     ],
   },

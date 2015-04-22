@@ -1,9 +1,0 @@
----
-:backends:
-  - yaml
-:yaml:
-  :datadir: <%= scope['::puppet::hiera'][:yaml][:datadir] %>
-:hierarchy:
-<% scope['::puppet::hiera'][:hierarchy].each do |x| -%>
-  - <%= x %>
-<% end -%>

@@ -55,44 +55,19 @@
 #   to use the trusty release to get upstream packages
 #
 class puppet (
-  # Version control
-  $version = 'installed',
-  $package = 'puppet-common',
-  $provider = 'apt',
-  # Installation control
-  $dependencies = [
-    'ruby-shadow',
-  ],
-  # Configuration management
-  $conf = {
-    'main' => {
-      'logdir' => '/var/lib/puppet',
-      'vardir' => '/var/lib/puppet',
-      'ssldir' => '/var/lib/puppet/ssl',
-      'rundir' => '/var/run/puppet',
-    },
-  },
-  # Hiera management
-  $hiera = {
-    'backends' => [
-      'yaml',
-    ],
-    'yaml' => {
-      'datadir' => '/var/lib/hiera',
-    },
-    'hierarchy' => [
-      'common',
-    ],
-  },
-  # Autosign management
-  $autosign = [],
-  # Repository management
-  $repo_manage = false,
-  $repo_location = 'http://apt.puppetlabs.com',
-  $repo_release = 'trusty',
-  $repo_repos = 'main dependencies',
-  $repo_key = '47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30',
-  $repo_key_source = 'https://apt.puppetlabs.com/keyring.gpg',
+  $version,
+  $package,
+  $provider,
+  $dependencies,
+  $conf,
+  $hiera,
+  $autosign,
+  $repo_manage,
+  $repo_location,
+  $repo_release,
+  $repo_repos,
+  $repo_key,
+  $repo_key_source,
 ) {
 
   contain ::puppet::repo

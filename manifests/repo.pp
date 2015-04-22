@@ -14,11 +14,13 @@ class puppet::repo (
     include ::apt
 
     apt::source { 'puppetlabs':
-      location   => $puppet::repo_location,
-      release    => $puppet::repo_release,
-      repos      => $puppet::repo_repos,
-      key        => $puppet::repo_key,
-      key_source => $puppet::repo_key_source,
+      location => $puppet::repo_location,
+      release  => $puppet::repo_release,
+      repos    => $puppet::repo_repos,
+      key      => {
+        'id'     => $puppet::repo_key,
+        'source' => $puppet::repo_key_source,
+      },
     }
 
   }

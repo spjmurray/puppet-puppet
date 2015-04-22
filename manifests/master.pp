@@ -4,7 +4,7 @@
 #
 class puppet::master {
 
-  private()
+  assert_private()
 
   include ::puppet
 

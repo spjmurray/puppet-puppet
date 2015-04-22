@@ -4,7 +4,7 @@
 #
 class puppet::config {
 
-  private()
+  assert_private()
 
   file { '/etc/puppet':
     ensure => directory,

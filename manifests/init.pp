@@ -81,6 +81,8 @@ class puppet (
       'datadir' => '/var/lib/hiera',
     },
     'hierarchy' => [
+      '"%{::hostname}"',
+      '"%{::environment}"',
       'common',
     ],
   },

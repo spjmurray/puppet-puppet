@@ -7,7 +7,7 @@
 class puppet::repo (
 ) {
 
-  private()
+  assert_private()
 
   if $puppet::repo_manage {
 

@@ -4,7 +4,7 @@
 #
 class puppet::hiera {
 
-  private()
+  assert_private()
 
   file { '/etc/puppet/hiera.yaml':
     ensure  => file,

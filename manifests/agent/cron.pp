@@ -16,7 +16,7 @@ class puppet::agent::cron (
   include ::puppet
 
   cron { 'puppet-agent':
-    command => 'puppet agent --onetime --no-daemonize',
+    command => "${puppet::path} agent --onetime --no-daemonize",
     user    => 'root',
     minute  => interval_to_minute($runiterval),
   }

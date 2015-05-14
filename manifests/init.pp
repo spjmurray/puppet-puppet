@@ -14,6 +14,10 @@
 # [*provider*]
 #   Where to source the packages from
 #
+# [*path*]
+#   Absolute path to the puppet binary for things like cron with
+#   restricted $PATH
+#
 # [*dependencies*]
 #   Additional package dependencies
 #
@@ -59,6 +63,7 @@ class puppet (
   $version = 'installed',
   $package = 'puppet-common',
   $provider = 'apt',
+  $path = '/usr/bin/puppet',
   # Installation control
   $dependencies = [
     'ruby-shadow',

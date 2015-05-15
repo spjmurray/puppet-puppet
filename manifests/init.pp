@@ -92,6 +92,7 @@ class puppet (
     ],
   },
   # Autosign management
+  $autosign_manage = true,
   $autosign = [],
   # Repository management
   $repo_manage = false,

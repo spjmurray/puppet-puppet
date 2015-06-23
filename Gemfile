@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-group :development do
-  gem 'rake',                   :require => false
-  gem 'puppet-lint',            :require => false
-  gem 'rspec-puppet',           :require => false
-  gem 'beaker-rspec',           :require => false
-  gem 'puppetlabs_spec_helper', :require => false
-end
+gem 'rake'
+gem 'puppet'
+gem 'puppet-lint'
+gem 'rspec-puppet'
+gem 'beaker'
+gem 'beaker-rspec'
+gem 'puppetlabs_spec_helper'

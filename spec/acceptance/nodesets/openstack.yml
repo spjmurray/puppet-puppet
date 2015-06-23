@@ -9,4 +9,3 @@ HOSTS:
     distmoduledir: /etc/puppet/modules
 CONFIG:
   openstack_network: beaker
-  openstack_keyname: spjmurray

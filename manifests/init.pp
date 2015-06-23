@@ -76,6 +76,9 @@ class puppet (
       'ssldir' => '/var/lib/puppet/ssl',
       'rundir' => '/var/run/puppet',
     },
+    'agent' => {
+      'server' => $::fqdn,
+    },
   },
   # Hiera management
   $hiera = {

@@ -48,6 +48,9 @@
 # [*repo_key_source*]
 #   Where to source the GPG key from
 #
+# [*ssl*]
+#   Whether a master node should use SSL
+#
 # === Notes
 #
 # * Chances are you are defining hiera in hiera, and as such any variable
@@ -104,6 +107,8 @@ class puppet (
   $repo_repos = 'main dependencies',
   $repo_key = '47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30',
   $repo_key_source = 'https://apt.puppetlabs.com/keyring.gpg',
+  # Master configuration
+  $ssl = true,
 ) {
 
   contain ::puppet::repo

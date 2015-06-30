@@ -9,16 +9,18 @@ class puppet::master {
   include ::puppet
 
   $ssldir = puppet_config('main', 'ssldir', '/etc/puppet/ssl')
+  $ca = puppet_config('master', 'ca', true)
 
   package { 'puppetmaster-common':
     ensure   => $puppet::version,
     provider => $puppet::provider,
-  } ->
+  }
 
-  # TODO: This step should be conditional
-  exec { 'create ca':
-    command => "puppet cert generate ${::fqdn}",
-    creates => "${ssldir}/certs/${::fqdn}.pem",
+  if $ca {
+    exec { 'create ca':
+      command => "puppet cert generate ${::fqdn}",
+      creates => "${ssldir}/certs/${::fqdn}.pem",
+    }
   }
 
   if $puppet::autosign_manage {

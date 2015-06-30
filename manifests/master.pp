@@ -8,7 +8,7 @@ class puppet::master {
 
   include ::puppet
 
-  $ssldir = puppet_ssldir()
+  $ssldir = puppet_config('main', 'ssldir', '/etc/puppet/ssl')
 
   package { 'puppetmaster-common':
     ensure   => $puppet::version,

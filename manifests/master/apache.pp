@@ -9,7 +9,7 @@ class puppet::master::apache {
   include ::apache::mod::passenger
   include ::puppet::master
 
-  $ssldir = puppet_ssldir()
+  $ssldir = puppet_config('main', 'ssldir', '/etc/puppet/ssl')
 
   file { [
     '/etc/puppet/rack',

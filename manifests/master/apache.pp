@@ -41,7 +41,7 @@ class puppet::master::apache {
     },
   }
 
-  if ::puppet::ssl {
+  if $puppet::ssl {
     $vhost_params_ssl = {
       'ssl'               => true,
       'ssl_protocol'      => '-ALL +SSLv3 +TLSv1',

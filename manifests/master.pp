@@ -9,14 +9,14 @@ class puppet::master {
   include ::puppet
 
   $ssldir = puppet_config('main', 'ssldir', '/etc/puppet/ssl')
-  $ca = puppet_config('master', 'ca', true)
+  $ca = puppet_config('master', 'ca', 'true')
 
   package { 'puppetmaster-common':
     ensure   => $puppet::version,
     provider => $puppet::provider,
   }
 
-  if $ca {
+  if $ca == 'true' {
     exec { 'create ca':
       command => "puppet cert generate ${::fqdn}",
       creates => "${ssldir}/certs/${::fqdn}.pem",

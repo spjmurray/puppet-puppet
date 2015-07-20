@@ -1,5 +1,7 @@
 #Puppet
 
+[![Build Status](https://travis-ci.org/spjmurray/puppet-puppet.png?branch=master)](https://travis-ci.org/spjmurray/puppet-puppet)
+
 ####Table Of Contents
 
 1. [Overview](#overview)

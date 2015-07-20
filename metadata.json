@@ -1,0 +1,22 @@
+{
+  "name": "spjmurray-puppet",
+  "version": "1.0.0",
+  "author": "Simon Murray",
+  "license": "GPL-3.0",
+  "summary": "Puppet orchestration",
+  "source": "https://github.com/spjmurray/puppet-puppet",
+  "project_page": "https://github.com/spjmurray/puppet-puppet",
+  "issues_url": "https://github.com/spjmurray/puppet-puppet/issues",
+  "tags": ["puppet"],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [ "14.04", "14.10", "15.04" ]
+    }
+  ],
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">=4.6.0" },
+    { "name": "puppetlabs/apt", "version_requirement": ">=2.1.0" },
+    { "name": "puppetlabs/apache", "version_requirement": ">=1.5.0" }
+  ]
+}

@@ -84,19 +84,16 @@ class puppet (
     },
   },
   # Hiera management
-  $hiera = {
-    'backends' => [
-      'yaml',
-    ],
-    'yaml' => {
-      'datadir' => '/var/lib/hiera',
-    },
-    'hierarchy' => [
-      '"%{::hostname}"',
-      '"%{::environment}"',
-      'common',
-    ],
-  },
+  $hiera = '---
+:backends:
+  - yaml
+:yaml:
+  :datadir: /var/lib/hiera
+:hierarchy:
+  - "%{::hostname}"
+  - "%{::environment}"
+  - common
+',
   # Autosign management
   $autosign_manage = true,
   $autosign = [],

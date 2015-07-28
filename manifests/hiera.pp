@@ -11,7 +11,7 @@ class puppet::hiera {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => generate_hiera($puppet::hiera),
+    content => $puppet::hiera,
   }
 
 }

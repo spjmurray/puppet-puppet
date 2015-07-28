@@ -32,15 +32,15 @@ include ::puppet::master::apache
 ---
 puppet::repo_manage: true
 
-puppet::hiera:
-  backends:
-    - 'yaml'
-  yaml:
-    datadir: '"/etc/puppet/environments/%%{}{::environment}/hiera"'
-  hierarchy:
-    - '"nodes/%%{}{::hostname}"'
-    - '"modules/%%{}{calling_module}"'
-    - 'common'
+puppet::hiera: |
+  :backends:
+    - yaml
+  :yaml:
+    :datadir: "/etc/puppet/environments/%{::environment}/hiera"
+  :hierarchy:
+    - "nodes/%{::hostname}"
+    - "modules/%{calling_module}"
+    - common
 
 puppet::conf:
   main:

@@ -6,6 +6,12 @@ class puppet::config {
 
   assert_private()
 
+  if $::puppet::conf_merge {
+    $_conf = hiera('puppet::conf')
+  } else {
+    $_conf = $::puppet::conf
+  }
+
   file { '/etc/puppet':
     ensure => directory,
     owner  => 'root',

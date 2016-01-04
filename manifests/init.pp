@@ -24,6 +24,9 @@
 # [*conf*]
 #   Puppet configuration file contents
 #
+# [*conf_merge*]
+#   Whether to merge configuration hash with hiera
+#
 # [*hiera*]
 #   Hiera configuration file contents
 #
@@ -83,6 +86,7 @@ class puppet (
       'server' => $::fqdn,
     },
   },
+  $conf_merge = false,
   # Hiera management
   $hiera = '---
 :backends:
@@ -104,8 +108,10 @@ class puppet (
   $repo_repos = 'main dependencies',
   $repo_key = '47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30',
   $repo_key_source = 'https://apt.puppetlabs.com/keyring.gpg',
-  # Master configuration
+  # Master/server configuration
   $ssl = true,
+  # Server gem configuration
+  $server_gems = [],
 ) {
 
   contain ::puppet::repo

@@ -1,4 +1,4 @@
-<% scope['::puppet::conf'].each do |section, key_values| -%>
+<% @_conf.each do |section, key_values| -%>
 [<%= section %>]
 <% key_values.each do |key, value| -%>
   <%= key %> = <%= value %>

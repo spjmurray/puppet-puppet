@@ -7,7 +7,7 @@ class puppet::config {
   assert_private()
 
   if $::puppet::conf_merge {
-    $_conf = hiera('puppet::conf')
+    $_conf = hiera_hash('puppet::conf')
   } else {
     $_conf = $::puppet::conf
   }

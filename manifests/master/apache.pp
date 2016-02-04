@@ -17,8 +17,8 @@ class puppet::master::apache {
     '/etc/puppet/rack/tmp',
   ]:
     ensure => directory,
-    owner  => 'root',
-    group  => 'root',
+    owner  => 'puppet',
+    group  => 'puppet',
     mode   => '0755',
   } ->
 

@@ -3,10 +3,10 @@ HOSTS:
   puppet:
     roles:
       - master
-    platform: ubuntu-14.04-amd64
+    platform: ubuntu-16.04-amd64
     hypervisor: openstack
     flavor: dc1.2x4
-    image: 'Ubuntu 14.04'
+    image: 'Ubuntu 16.04'
     user: ubuntu
 CONFIG:
   type: foss

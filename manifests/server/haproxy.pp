@@ -61,7 +61,7 @@ class puppet::server::haproxy (
         'ssl',
         'no-sslv3',
         'ciphers HIGH:!aNULL:!MD5',
-        'crt /etc/ssl/private/puppet.crt',
+        'crt /etc/ssl/private/puppet-server.crt',
         'ca-file /etc/puppetlabs/puppet/ssl/certs/ca.pem',
         'verify optional',
       ],

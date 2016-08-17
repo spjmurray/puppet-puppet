@@ -5,8 +5,8 @@ HOSTS:
       - master
     platform: ubuntu-16.04-amd64
     hypervisor: openstack
-    flavor: dc1.2x4
-    image: 'Ubuntu 16.04'
+    flavor: dc1.4x8
+    image: xenial-server-cloudimg-amd64-scsi
     user: ubuntu
 CONFIG:
   type: foss

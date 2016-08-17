@@ -22,12 +22,8 @@ describe 'puppet' do
       apply_manifest(pp, :catch_changes => true)
     end
 
-    it 'allows certificate generation' do
-      shell('puppet cert generate `hostname -f`', :acceptable_exit_codes => 0)
-    end
-
     it 'allows agent operation' do
-      shell('puppet agent --no-daemonize --onetime --test', :acceptable_exit_codes => 0)
+      shell('puppet agent --test --server `hostname -f`', :acceptable_exit_codes => 0)
     end
   end
 
@@ -55,7 +51,7 @@ describe 'puppet' do
     end
 
     it 'allows agent operation' do
-      shell('puppet agent --no-daemonize --onetime --test', :acceptable_exit_codes => 0)
+      shell('puppet agent --test --server `hostname -f`', :acceptable_exit_codes => 0)
     end
   end
 end

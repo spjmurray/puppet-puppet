@@ -36,10 +36,10 @@ puppet::hiera: |
   :backends:
     - yaml
   :yaml:
-    :datadir: "/etc/puppet/environments/%%{}{::environment}/hiera"
+    :datadir: "/etc/puppet/environments/%{literal('%')}{::environment}/hiera"
   :hierarchy:
-    - "nodes/%%{}{::hostname}"
-    - "modules/%%{}{calling_module}"
+    - "nodes/%{literal('%')}{::hostname}"
+    - "modules/%{literal('%')}{calling_module}"
     - common
 
 puppet::conf:
@@ -47,7 +47,7 @@ puppet::conf:
     environmentpath: '$confdir/environments'
 ```
 
-Please note the escape sequences in the puppet::hiera string as at present
+Please note the literal sequences in the puppet::hiera string as at present
 with foss hiera it will try interpolate %{} statements unconditionally
 
 ##Dependencies

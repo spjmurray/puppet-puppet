@@ -9,7 +9,7 @@ class puppet::server::haproxy::certificate {
     owner  => 'root',
     group  => 'root',
     mode   => '0400',
-  } 
+  }
 
   concat::fragment { 'puppet-server-key':
     target => '/etc/ssl/private/puppet-server.crt',

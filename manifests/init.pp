@@ -8,19 +8,6 @@
 # [*version*]
 #   Version of the packages to install
 #
-# [*package*]
-#   Package to install e.g. puppet-common in apt is puppet in gem
-#
-# [*provider*]
-#   Where to source the packages from
-#
-# [*path*]
-#   Absolute path to the puppet binary for things like cron with
-#   restricted $PATH
-#
-# [*dependencies*]
-#   Additional package dependencies
-#
 # [*conf*]
 #   Puppet configuration file contents
 #
@@ -29,9 +16,6 @@
 #
 # [*hiera*]
 #   Hiera configuration file contents
-#
-# [*autosign*]
-#   Array of autosign.conf entries
 #
 # [*repo_manage*]
 #   Whether to enable module control of the puppet apt repository
@@ -51,8 +35,11 @@
 # [*repo_key_source*]
 #   Where to source the GPG key from
 #
-# [*ssl*]
-#   Whether a master node should use SSL
+# [*service_type*]
+#   Which puppet agent service type to use
+#
+# [*service_iterval*]
+#   How often to run the agent
 #
 # === Notes
 #
@@ -65,58 +52,30 @@
 #   to use the trusty release to get upstream packages
 #
 class puppet (
-  # Version control
-  $version = 'installed',
-  $package = 'puppet-common',
-  $provider = 'apt',
-  $path = '/usr/bin/puppet',
-  # Installation control
-  $dependencies = [
-    'ruby-shadow',
-  ],
-  # Configuration management
-  $conf = {
-    'main' => {
-      'logdir' => '/var/lib/puppet',
-      'vardir' => '/var/lib/puppet',
-      'ssldir' => '/var/lib/puppet/ssl',
-      'rundir' => '/var/run/puppet',
-    },
-    'agent' => {
-      'server' => $::fqdn,
-    },
-  },
-  $conf_merge = false,
-  # Hiera management
-  $hiera = '---
-:backends:
-  - yaml
-:yaml:
-  :datadir: /var/lib/hiera
-:hierarchy:
-  - "%{::hostname}"
-  - "%{::environment}"
-  - common
-',
-  # Autosign management
-  $autosign_manage = true,
-  $autosign = [],
-  # Repository management
-  $repo_manage = false,
-  $repo_location = 'http://apt.puppetlabs.com',
-  $repo_release = 'trusty',
-  $repo_repos = 'main dependencies',
-  $repo_key = '47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30',
-  $repo_key_source = 'https://apt.puppetlabs.com/keyring.gpg',
-  # Master/server configuration
-  $ssl = true,
-  # Server gem configuration
-  $server_gems = [],
+  String $version = 'installed',
+  Optional[Hash[String, Hash[String, String]]] $conf = undef,
+  Boolean $conf_merge = false,
+  Optional[Hash] $hiera = undef,
+  Boolean $repo_manage = false,
+  String $repo_location = 'http://apt.puppet.com',
+  String $repo_release = $::lsbdistcodename,
+  String $repo_repos = 'PC1',
+  String $repo_key = '47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30',
+  String $repo_key_source = 'https://apt.puppet.com/keyring.gpg',
+  Optional[Enum['cron']] $service_type = undef,
+  Integer $service_iterval = 30,
 ) {
 
   contain ::puppet::repo
+  contain ::puppet::install
   contain ::puppet::config
   contain ::puppet::hiera
-  contain ::puppet::install
+  contain ::puppet::service
+
+  Class['::puppet::repo'] ->
+  Class['::puppet::install'] ->
+  Class['::puppet::config'] ->
+  Class['::puppet::hiera'] ->
+  Class['::puppet::service']
 
 }

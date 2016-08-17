@@ -6,12 +6,16 @@ class puppet::hiera {
 
   assert_private()
 
-  file { '/etc/puppet/hiera.yaml':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => $puppet::hiera,
+  if $::puppet::hiera {
+
+    file { '/etc/puppetlabs/puppet/hiera.yaml':
+      ensure  => file,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => $::puppet::hiera,
+    }
+
   }
 
 }

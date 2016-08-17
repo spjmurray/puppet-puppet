@@ -12,19 +12,16 @@ class puppet::config {
     $_conf = $::puppet::conf
   }
 
-  file { '/etc/puppet':
-    ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
-  }
+  if $_conf {
 
-  file { '/etc/puppet/puppet.conf':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template('puppet/puppet.conf.erb'),
+    file { '/etc/puppetlabs/puppet/puppet.conf':
+      ensure  => file,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('puppet/puppet.conf.erb'),
+    }
+
   }
 
 }

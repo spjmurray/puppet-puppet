@@ -4,21 +4,20 @@
 # centralized database in hiera if multiple modules define this and manage
 # from there, or you want to use pinning etc.
 #
-class puppet::repo (
-) {
+class puppet::repo {
 
   assert_private()
 
-  if $puppet::repo_manage {
+  if $::puppet::repo_manage {
 
     include ::apt
 
     apt::source { 'puppetlabs':
-      location   => $puppet::repo_location,
-      release    => $puppet::repo_release,
-      repos      => $puppet::repo_repos,
-      key        => $puppet::repo_key,
-      key_source => $puppet::repo_key_source,
+      location   => $::puppet::repo_location,
+      release    => $::puppet::repo_release,
+      repos      => $::puppet::repo_repos,
+      key        => $::puppet::repo_key,
+      key_source => $::puppet::repo_key_source,
     }
 
   }

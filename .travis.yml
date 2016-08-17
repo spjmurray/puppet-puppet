@@ -6,7 +6,7 @@ script:
 - bundle exec rake beaker
 env:
   matrix:
-  - PUPPET_INSTALL_TYPE=foss BEAKER_set=openstack-ubuntu-trusty
+  - PUPPET_INSTALL_TYPE=agent BEAKER_set=openstack-ubuntu-trusty
   global:
   - BEAKER_debug=yes
   - secure: cPIesc32ppvBIx1G9eNmJRRuINbBX90PC1IsLOrqLoys6mDPnbAhIDA1PGLhNrIt6wL4EW+im/vkNCoZYllnLxD1htOAnrbNarpoNj4OA++E7JpcrHTNmhupyGTXsLZ5KohSbLr1gInmCnN8JLEW+A2ZcVbxu5Aq/9oziQRG1tAsp+h9snTU+JO8MyctePuhWPA+yYvWxHKbP6QBXM8eHnqFXQCIlg8TI9TReeGVM9fZljyaujhQ/Ma+wZu+4+F+aZiFXHwHs/zHzFcjXsSz0R4SSXpx9Rj8bQLU66SvzIs9XmnbVIWyMItrEe0RAEsxwNOiy0SYKyydGGkZe9edCGVh68iCFh00XtqIgBnFGZOkwe5Lc24JD8yWT0EdCdus3+6iRsY5ztFt30CZlYUhk2pmLADdtML+EC/roL0wwPcHbJe4PdgCvK639lo/4IQ9munSDMJytBoc/URePrYiHrX2iYSOkmQ3rqfbQRDVMjv07TLsaNNzxdVB7PCmi0c0dIuYoF7B2tUUCnPKKKpUMPUhzBBnTfE5jmqG23+Bfv7DT7vNwSPtBzG8vHtFI5/jVscbxcC0oxUaNviXLMXLaAhwUMe4fxv9fudiLfrZpt7S988JtH+L3jwiPnNHCJUH732/DRFrrab9s+Hj9gQkUEmlKcqTDLXFlwGfpVOhFXg=

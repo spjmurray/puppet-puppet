@@ -24,8 +24,8 @@ sufficient to create a working setup.
 ##Usage
 
 ```puppet
-include ::puppet::agent::cron
-include ::puppet::master::apache
+include ::puppet
+include ::puppet::server
 ```
 
 ```yaml
@@ -43,10 +43,6 @@ puppet::hiera: |
     - common
 
 puppet::conf:
-  main:
-    logdir: '/var/lib/puppet'
-    rundir: '/var/run/puppet'
-    ssldir: '/var/lib/puppet/ssl'
   master:
     environmentpath: '$confdir/environments'
 ```
@@ -56,10 +52,13 @@ with foss hiera it will try interpolate %{} statements unconditionally
 
 ##Dependencies
 
-- http://github.com/puppetlabs/puppetlabs-apache
 - http://github.com/puppetlabs/puppetlabs-apt
-- http://github.com/puppetlabs/puppetlabs-inifile
 - http://github.com/puppetlabs/puppetlabs-stdlib
+
+If you are using the HAProxy load balancer class you will need
+
+- http://github.com/puppetlabs/puppetlabs-concat
+- http://github.com/puppetlabs/puppetlabs-haproxy
 
 ##Contribution
 
@@ -72,6 +71,7 @@ That said if extensions are required ensure the changes are unit tested before
 submission.  Please at least run:
 
 ```
+rake lint
 rake validate
 rake beaker
 ```

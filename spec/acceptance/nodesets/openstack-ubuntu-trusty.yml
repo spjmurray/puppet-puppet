@@ -5,7 +5,7 @@ HOSTS:
       - master
     platform: ubuntu-14.04-amd64
     hypervisor: openstack
-    flavor: dc1.1x1.20
+    flavor: dc1.2x4
     image: 'Ubuntu 14.04'
     user: ubuntu
     distmoduledir: /etc/puppet/modules

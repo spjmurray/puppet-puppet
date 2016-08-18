@@ -17,10 +17,10 @@
 #   Array of autosign.conf entries
 #
 class puppet::server (
-  Boolean $ssl = true,
-  String $port = '8140',
-  Optional[Array[String]] $gems = undef,
-  Optional[Array[String]] $autosign = undef,
+  Boolean $ssl,
+  String $port,
+  Optional[Array[String]] $gems,
+  Optional[Array[String]] $autosign,
 ) {
 
   contain ::puppet::server::install

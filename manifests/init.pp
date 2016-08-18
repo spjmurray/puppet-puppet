@@ -46,24 +46,24 @@
 # * Chances are you are defining hiera in hiera, and as such any variable
 #   substitutions must be escaped.  To generate the correct output for
 #   ```modules/%{calling_module}``` you will need to specify the hiera input
-#   as ```modules/%%{}{calling_module}```
+#   as ```modules/%{literal('%')}{calling_module}```
 #
 # * PuppetLabs only support LTS, so for releases like utopic you will need
 #   to use the trusty release to get upstream packages
 #
 class puppet (
-  String $version = 'installed',
-  Optional[Hash[String, Hash[String, String]]] $conf = undef,
-  Boolean $conf_merge = false,
-  Optional[Hash] $hiera = undef,
-  Boolean $repo_manage = false,
-  String $repo_location = 'http://apt.puppet.com',
-  String $repo_release = $::lsbdistcodename,
-  String $repo_repos = 'PC1',
-  String $repo_key = '47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30',
-  String $repo_key_source = 'https://apt.puppet.com/keyring.gpg',
-  Optional[Enum['cron']] $service_type = undef,
-  Integer $service_iterval = 30,
+  String $version,
+  Optional[Hash[String, Hash[String, String]]] $conf,
+  Boolean $conf_merge,
+  Optional[Hash] $hiera,
+  Boolean $repo_manage,
+  String $repo_location,
+  String $repo_release,
+  String $repo_repos,
+  String $repo_key,
+  String $repo_key_source,
+  Optional[Enum['cron']] $service_type,
+  Integer $service_iterval,
 ) {
 
   contain ::puppet::repo

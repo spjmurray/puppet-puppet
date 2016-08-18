@@ -26,13 +26,13 @@
 #   Whether to manage the HAProxy repository pins
 #
 class puppet::server::haproxy (
-  Array[String] $server_names = [ $::fqdn ],
-  Array[String] $server_addresses = [ $::ipaddress ],
-  String $server_port = '8140',
-  String $ca_server_name = $::fqdn,
-  String $ca_server_address = $::ipaddress,
-  String $ca_server_port = '8140',
-  Boolean $repo_manage = true,
+  Array[String] $server_names,
+  Array[String] $server_addresses,
+  String $server_port,
+  String $ca_server_name,
+  String $ca_server_address,
+  String $ca_server_port,
+  Boolean $repo_manage,
 ) {
 
   include ::haproxy

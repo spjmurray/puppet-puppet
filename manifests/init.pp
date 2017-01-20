@@ -55,7 +55,7 @@ class puppet (
   String $version,
   Optional[Hash[String, Hash[String, String]]] $conf,
   Boolean $conf_merge,
-  Optional[Hash] $hiera,
+  Optional[String] $hiera,
   Boolean $repo_manage,
   String $repo_location,
   String $repo_release,

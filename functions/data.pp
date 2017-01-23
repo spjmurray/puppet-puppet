@@ -2,7 +2,7 @@ function puppet::data() {
 
   $base_params = {
     'puppet::version'         => 'installed',
-    'puppet::conf'            => undef,
+    'puppet::conf'            => {},
     'puppet::conf_merge'      => false,
     'puppet::hiera'           => undef,
     'puppet::repo_manage'     => false,

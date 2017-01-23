@@ -53,16 +53,16 @@
 #
 class puppet (
   String $version,
-  Optional[Hash[String, Hash[String, String]]] $conf,
+  Puppet::Conf $conf,
   Boolean $conf_merge,
-  Optional[String] $hiera,
+  Puppet::Hiera $hiera,
   Boolean $repo_manage,
   String $repo_location,
   String $repo_release,
   String $repo_repos,
   String $repo_key,
   String $repo_key_source,
-  Optional[Enum['cron']] $service_type,
+  Puppet::ServiceType $service_type,
   Integer $service_iterval,
 ) {
 

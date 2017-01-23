@@ -7,12 +7,12 @@ class puppet::config {
   assert_private()
 
   if $::puppet::conf_merge {
-    $_conf = lookup('puppet::conf', Hash[String, Hash[String, String]], 'deep')
+    $_conf = lookup('puppet::conf', Puppet::Conf, 'deep')
   } else {
     $_conf = $::puppet::conf
   }
 
-  if $_conf {
+  if !empty($_conf) {
 
     file { '/etc/puppetlabs/puppet/puppet.conf':
       ensure  => file,

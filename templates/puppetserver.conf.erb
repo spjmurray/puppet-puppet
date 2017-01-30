@@ -45,7 +45,11 @@ jruby-puppet: {
     master-log-dir: /var/log/puppetlabs/puppetserver
 
     # (optional) maximum number of JRuby instances to allow
+<% if @_max_active_instances -%>
+    max-active-instances: <%= @_max_active_instances %>
+<% else -%>
     #max-active-instances: 1
+<% end -%>
 
     # (optional) Authorize access to Puppet master endpoints via rules specified
     # in the legacy Puppet auth.conf file (if true or not specified) or via rules

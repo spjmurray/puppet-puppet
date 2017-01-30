@@ -21,6 +21,7 @@ class puppet::server (
   String $port,
   Optional[Array[String]] $gems,
   Optional[Array[String]] $autosign,
+  Optional[Integer] $max_active_instances,
 ) {
 
   contain ::puppet::server::install

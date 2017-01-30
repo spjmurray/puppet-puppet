@@ -7,6 +7,7 @@ class puppet::server::configure {
   $_ssl = $::puppet::server::ssl
   $_port = $::puppet::server::port
   $_autosign = $::puppet::server::autosign
+  $_max_active_instances = $::puppet::server::max_active_instances
 
   file { '/etc/puppetlabs/puppetserver/conf.d/puppetserver.conf':
     ensure  => file,

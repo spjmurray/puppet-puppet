@@ -1,1 +1,1 @@
-type Puppet::ServiceType = Optional[Enum['cron']]
+type Puppet::ServiceType = Optional[Enum['cron', 'daemon']]

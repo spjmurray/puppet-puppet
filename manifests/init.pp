@@ -72,10 +72,14 @@ class puppet (
   contain ::puppet::hiera
   contain ::puppet::service
 
-  Class['::puppet::repo'] ->
-  Class['::puppet::install'] ->
-  Class['::puppet::config'] ->
-  Class['::puppet::hiera'] ->
-  Class['::puppet::service']
+  Class['::puppet::repo']
+  -> Class['::puppet::install']
+  -> Class['::puppet::config']
+  -> Class['::puppet::hiera']
+  -> Class['::puppet::service']
+
+  # Restart the daemon on configuration changes
+  Class['::puppet::config']
+  ~> Class['::puppet::service']
 
 }

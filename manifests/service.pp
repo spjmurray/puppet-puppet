@@ -14,6 +14,13 @@ class puppet::service {
       }
     }
 
+    'daemon': {
+      service { 'puppet':
+        ensure => running,
+        enable => true,
+      }
+    }
+
     default: {
     }
   }

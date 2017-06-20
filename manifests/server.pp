@@ -28,9 +28,9 @@ class puppet::server (
   contain ::puppet::server::configure
   contain ::puppet::server::service
 
-  Class['::puppet'] ->
-  Class['::puppet::server::install'] ->
-  Class['::puppet::server::configure'] ~>
-  Class['::puppet::server::service']
+  Class['::puppet']
+  -> Class['::puppet::server::install']
+  -> Class['::puppet::server::configure']
+  ~> Class['::puppet::server::service']
 
 }

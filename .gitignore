@@ -4,3 +4,4 @@ log
 pkg
 .bundle
 vendor
+spec/fixtures

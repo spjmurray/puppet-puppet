@@ -1,6 +1,6 @@
 {
   "name": "spjmurray-puppet",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "author": "Simon Murray",
   "license": "GPL-3.0",
   "summary": "Puppet orchestration",
